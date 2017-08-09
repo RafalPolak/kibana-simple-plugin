@@ -1,0 +1,6 @@
+{
+  "name": "elasticsearch_status",
+  "version": "5.2.1",
+  "description": "An awesome Kibana plugin",
+  "main": "index.js"
+}
