@@ -9,6 +9,12 @@ import detailTemplate from './templates/detail.html';
 require('plugins/elasticsearch_status/lib/lodash.js');
 require('plugins/elasticsearch_status/lib/d3.js');
 
+/*
+To avoid situation when we have blank page after second click on menu panel
+you need to add routing when '' and otherwise, because after second click kibana splice url with char /
+and then ui router not working anymore
+*/
+
 uiRoutes.enable();
 uiRoutes
 .when('/', {
@@ -20,7 +26,13 @@ uiRoutes
   template: detailTemplate,
   controller: 'elasticsearchDetailController',
   controllerAs: 'ctrl'
-});
+})
+.when('', {
+  template: overviewTemplate,
+  controller: 'elasticsearchStatusController',
+  controllerAs: 'ctrl'
+})
+.otherwise({redirectTo:'/'});
 
 uiModules
 .get('app/elasticsearch_status')
